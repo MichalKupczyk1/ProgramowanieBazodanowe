@@ -9,6 +9,7 @@ namespace BLL.ServiceInterfaces
 {
     public interface IUserInterface
     {
-  
+        public bool UserLogIn(string username, string password);
+        public bool UserLogOut(int UserId);
     }
 }

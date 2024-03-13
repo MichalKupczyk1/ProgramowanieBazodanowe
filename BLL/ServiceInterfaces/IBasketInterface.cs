@@ -8,7 +8,8 @@ namespace BLL.ServiceInterfaces
 {
     public interface IBasketInterface
     {
-        public void ChangeTheAmountOfProductsInBasket(int basketId, int productId, int amount);
-        public bool RemoveProductFromBasket(int basketId, int productId);
+        public void AddProductToBasket(int basketId, int productId, int amount);
+        public void ChangeTheAmountOfProductsInBasket(int basketId, int amount);
+        public bool RemoveProductFromBasket(int basketId);
     }
 }

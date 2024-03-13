@@ -50,13 +50,22 @@ namespace BLL.DTOModels
         public int GroupId { get; }
         public int? ParentId { get; }
         public string Name { get; }
-        public IEnumerable<int>? ChildrenIds { get; }
-        public ProductGroupResponseDTO(int groupId, int? parentId, string name, IEnumerable<int>? childrenIds)
+        public ProductGroupResponseDTO(int groupId, int? parentId, string name)
         {
             GroupId = groupId;
             ParentId = parentId;
             Name = name;
-            ChildrenIds = childrenIds;
+        }
+    }
+
+    public class ProductGroupParentChildrenDTO
+    {
+        public int ParentId { get; }
+        public IEnumerable<ProductGroupResponseDTO>? Children { get; set; }
+        public ProductGroupParentChildrenDTO(int parentId, IEnumerable<ProductGroupResponseDTO>? children)
+        {
+            ParentId = parentId;
+            Children = children;
         }
     }
 }

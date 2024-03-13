@@ -17,6 +17,7 @@ namespace Model
         public int? UserId { get; set; }
         public User? User { get; set; }
         public DateTime Date { get; set; }
+        public bool IsPaid { get; set; }
         public IEnumerable<OrderPosition>? Positions { get; set; }
     }
 }

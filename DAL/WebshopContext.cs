@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    internal class WebshopContext : DbContext
+    public class WebshopContext : DbContext
     {
+        public DbSet<ChildrenParentProductGroup>? ChildrenParentProductGroups { get; set; }
         public DbSet<BasketPosition>? BasketPositions { get; set; }
         public DbSet<Order>? Orders { get; set; }
         public DbSet<OrderPosition>? OrderPositions { get; set; }

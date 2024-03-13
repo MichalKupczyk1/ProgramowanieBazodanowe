@@ -10,9 +10,10 @@ namespace BLL.DTOModels
     {
         public int Id { get; }
         public int? UserId { get; }
+        public bool IsPaid { get; }
         public DateTime Date { get; }
 
-        public OrderRequestDTO(int id, int? userId, DateTime date)
+        public OrderRequestDTO(int id, int? userId, bool isPaid, DateTime date)
         {
             Id = id;
             UserId = userId;
@@ -24,10 +25,12 @@ namespace BLL.DTOModels
     {
         public int? UserId { get; }
         public DateTime Date { get; }
-        public OrderResponseDTO(int? userId, DateTime date)
+        public bool IsPaid { get; }
+        public OrderResponseDTO(int? userId, bool isPaid, DateTime date)
         {
             UserId = userId;
             Date = date;
+            IsPaid = isPaid;
         }
     }
 }

@@ -9,13 +9,12 @@ namespace BLL.ServiceInterfaces
 {
     public interface IOrderInterface
     {
-        public void CreateOrder(int userId, IEnumerable<int>? basketPositionIds);
+        public void CreateOrder(int userId);
         public void PayForOrder(int orderId, double price);
         public OrderResponseDTO GetById(int id);
         public IEnumerable<OrderResponseDTO> GetOrders();
         public IEnumerable<OrderResponseDTO> GetOrdersByDate(DateTime date, bool descending = false);
-        public IEnumerable<OrderResponseDTO> GetOrdersById(int orderId, bool descending = false);
         public IEnumerable<OrderResponseDTO> GetOrdersByPrice(double price, bool descending = false);
-        public IEnumerable<OrderResponseDTO> GetOrdersByStatus(bool paid, bool descending = false);
+        public IEnumerable<OrderResponseDTO> GetOrdersByStatus(bool paid);
     }
 }

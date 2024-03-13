@@ -11,13 +11,12 @@ namespace BLL.ServiceInterfaces
     {
         public IEnumerable<ProductGroupResponseDTO> GetParentsOnly();
         public IEnumerable<ProductGroupResponseDTO> GetParentsOnlySortByName(bool descending = false);
-        public IEnumerable<ProductGroupResponseDTO> GetChildrenByGroupId(int groupId);
+
+        public ProductGroupParentChildrenDTO GetChildrenByGroupId(int groupId);
         public IEnumerable<ProductGroupResponseDTO> GetChildrenByGroupIdSortByName(int groupId, bool descending = false);
         public bool AddNewProductGroup(ProductGroupRequestDTO productGroup);
     }
     public interface IUserGroupInterface
     {
-        public bool UserLogIn(string username, string password);
-        public bool UserLogOut(int UserId);
     }
 }

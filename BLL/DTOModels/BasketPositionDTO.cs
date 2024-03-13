@@ -24,11 +24,11 @@ namespace BLL.DTOModels
 
     public class BasketPositionResponseDTO
     {
-        public int ProductId { get; }
-        public int UserId { get; }
+        public int? ProductId { get; }
+        public int? UserId { get; }
         public int Amount { get; }
 
-        public BasketPositionResponseDTO(int productId, int userId, int amount)
+        public BasketPositionResponseDTO(int? productId, int? userId, int amount)
         {
             ProductId = productId;
             UserId = userId;
