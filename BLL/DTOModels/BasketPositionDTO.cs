@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,12 +14,12 @@ namespace BLL.DTOModels
         public int? UserId { get; }
         public int Amount { get; }
 
-        public BasketPositionRequestDTO(int id, int? productId, int? userId, int amount)
+        public BasketPositionRequestDTO(BasketPosition basketPosition)
         {
-            Id = id;
-            ProductId = productId;
-            UserId = userId;
-            Amount = amount;
+            Id = basketPosition.Id;
+            ProductId = basketPosition.ProductId;
+            UserId = basketPosition.UserId;
+            Amount = basketPosition.Amount;
         }
     }
 
@@ -28,11 +29,11 @@ namespace BLL.DTOModels
         public int? UserId { get; }
         public int Amount { get; }
 
-        public BasketPositionResponseDTO(int? productId, int? userId, int amount)
+        public BasketPositionResponseDTO(BasketPosition basketPosition)
         {
-            ProductId = productId;
-            UserId = userId;
-            Amount = amount;
+            ProductId = basketPosition.ProductId;
+            UserId = basketPosition.UserId;
+            Amount = basketPosition.Amount;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using BLL.ServiceInterfaces;
+﻿using BLL.DTOModels;
+using BLL.ServiceInterfaces;
 using DAL;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,16 @@ namespace BLL_EF
                 dbContext.Update(basket);
                 dbContext.SaveChanges();
             }
+        }
+
+        public List<BasketPositionResponseDTO> GetBasketPositions()
+        {
+            throw new NotImplementedException();
+        }
+
+        public BasketPositionResponseDTO GetById(int id)
+        {
+            throw new NotImplementedException();
         }
 
         public bool RemoveProductFromBasket(int basketId)

@@ -7,24 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BLL_EF
+namespace BLL_DB
 {
     public class UserInterface : IUserInterface
     {
-        private readonly WebshopContext dbContext;
-        public UserInterface(WebshopContext dbContext)
-        {
-            this.dbContext = dbContext;
-        }
-
         public UserResponseDTO GetUser(int id)
         {
-            var user = dbContext.Users.FirstOrDefault(x => x.Id == id);
-            if (user != null)
-            {
-                return new UserResponseDTO(user);
-            }
-            return null;
+            throw new NotImplementedException();
         }
 
         public List<UserGroupResponseDTO> GetUsers()
@@ -32,9 +21,9 @@ namespace BLL_EF
             throw new NotImplementedException();
         }
 
-        public bool UserLogIn(string username, string password)
+        public bool UserLogIn(string? username, string? password)
         {
-            return dbContext.Users?.FirstOrDefault(x => x.Login == username && x.Password == password) != null;
+            throw new NotImplementedException();
         }
 
         public bool UserLogOut(int UserId)

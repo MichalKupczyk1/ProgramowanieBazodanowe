@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,35 +15,45 @@ namespace BLL.DTOModels
         public bool IsActive { get; }
         public int? GroupId { get; }
         public IEnumerable<BasketPositionResponseDTO>? BasketPositions { get; }
-        public ProductResponseDTO(string name, double price, string image, bool isActive, int? groupId, IEnumerable<BasketPositionResponseDTO>? basketPositions)
+        public ProductResponseDTO(Product product, string name = "")
         {
-            Name = name;
-            Price = price;
-            Image = image;
-            IsActive = isActive;
-            GroupId = groupId;
-            BasketPositions = basketPositions;
+            Name = name != "" ? name : product.Name;
+            Price = product.Price;
+            Image = product.Image;
+            IsActive = product.IsActive;
+            GroupId = product.GroupId;
+            BasketPositions = product.BasketPositions != null ? ConvertBasketPositions(product.BasketPositions) : null;
+        }
+
+        private IEnumerable<BasketPositionResponseDTO> ConvertBasketPositions(IEnumerable<BasketPosition> basketPositions)
+        {
+            List<BasketPositionResponseDTO> result = new List<BasketPositionResponseDTO>();
+            foreach (var position in basketPositions)
+            {
+                result.Add(new BasketPositionResponseDTO(position));
+            }
+            return result;
         }
     }
 
     public class ProductRequestDTO
     {
-        public int Id { get; }
-        public string Name { get; }
-        public double Price { get; }
-        public string Image { get; }
-        public bool IsActive { get; }
-        public int? GroupId { get; }
-        public IEnumerable<BasketPositionResponseDTO>? BasketPositions { get; }
-        public ProductRequestDTO(int id, string name, double price, string image, bool isActive, int? groupId, IEnumerable<BasketPositionResponseDTO>? basketPositions)
+        public int Id { get; init; }
+        public string Name { get; init; }
+        public double Price { get; init; }
+        public string Image { get; init; }
+        public bool IsActive { get; init; }
+        public int? GroupId { get; init; }
+        public IEnumerable<BasketPositionResponseDTO>? BasketPositions { get; init; }
+        public ProductRequestDTO() { }
+        public ProductRequestDTO(Product product)
         {
-            Id = id;
-            Name = name;
-            Price = price;
-            Image = image;
-            IsActive = isActive;
-            GroupId = groupId;
-            BasketPositions = basketPositions;
+            Id = product.Id;
+            Name = product.Name;
+            Price = product.Price;
+            Image = product.Image;
+            IsActive = product.IsActive;
+            GroupId = product.GroupId;
         }
     }
 }

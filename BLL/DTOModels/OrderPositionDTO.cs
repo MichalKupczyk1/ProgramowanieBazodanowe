@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,13 +14,13 @@ namespace BLL.DTOModels
         public int? OrderId { get; }
         public double Price { get; }
         public int Amount { get; }
-        public OrderPositionRequestDTO(int id, int? userId, int? orderId, double price, int amount)
+        public OrderPositionRequestDTO(OrderPosition orderPosition)
         {
-            Id = id;
-            UserId = userId;
-            OrderId = orderId;
-            Price = price;
-            Amount = amount;
+            Id = orderPosition.Id;
+            UserId = orderPosition.UserId;
+            OrderId = orderPosition.OrderId;
+            Price = orderPosition.Price;
+            Amount = orderPosition.Amount;
         }
     }
 
@@ -29,12 +30,12 @@ namespace BLL.DTOModels
         public int? OrderId { get; }
         public int Amount { get; }
         public double Price { get; }
-        public OrderPositionResponseDTO(int? userId, int? orderId, int amount, double price)
+        public OrderPositionResponseDTO(OrderPosition orderPosition)
         {
-            UserId = userId;
-            OrderId = orderId;
-            Amount = amount;
-            Price = price;
+            UserId = orderPosition.UserId;
+            OrderId = orderPosition.OrderId;
+            Amount = orderPosition.Amount;
+            Price = orderPosition.Price;
         }
     }
 }

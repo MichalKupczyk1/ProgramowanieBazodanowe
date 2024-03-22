@@ -38,31 +38,31 @@ namespace BLL_EF
         {
             var order = dbContext.Orders?.FirstOrDefault(x => x.Id == id);
             if (order != null)
-                return new OrderResponseDTO(order.UserId, order.IsPaid, order.Date);
+                return new OrderResponseDTO(order);
             return null;
         }
 
         public IEnumerable<OrderResponseDTO> GetOrders()
         {
-            var orders = dbContext.Orders?.Select(x => new OrderResponseDTO(x.UserId, x.IsPaid, x.Date)).ToList();
+            var orders = dbContext.Orders?.Select(x => new OrderResponseDTO(x)).ToList();
             return orders ?? new List<OrderResponseDTO>();
         }
 
         public IEnumerable<OrderResponseDTO> GetOrdersByDate(DateTime date, bool descending = false)
         {
-            var orders = dbContext.Orders?.Where(x => x.Date == date).Select(x => new OrderResponseDTO(x.UserId, x.IsPaid, x.Date));
+            var orders = dbContext.Orders?.Where(x => x.Date == date).Select(x => new OrderResponseDTO(x));
             return orders != null ? (descending ? orders.OrderByDescending(x => x.Date).ToList() : orders.OrderBy(x => x.Date).ToList()) : new List<OrderResponseDTO>();
         }
 
         public IEnumerable<OrderResponseDTO> GetOrdersByPrice(double price, bool descending = false)
         {
-            var orders = dbContext.Orders?.Where(x => x.Positions != null && x.Positions.Sum(y => y.Price) >= price).Select(x => new OrderResponseDTO(x.UserId, x.IsPaid, x.Date));
+            var orders = dbContext.Orders?.Where(x => x.Positions != null && x.Positions.Sum(y => y.Price) >= price).Select(x => new OrderResponseDTO(x));
             return orders != null ? (descending ? orders.OrderByDescending(x => x.Date).ToList() : orders.OrderBy(x => x.Date).ToList()) : new List<OrderResponseDTO>();
         }
 
         public IEnumerable<OrderResponseDTO> GetOrdersByStatus(bool paid)
         {
-            var orders = dbContext.Orders?.Where(x => x.IsPaid == paid).Select(x => new OrderResponseDTO(x.UserId, x.IsPaid, x.Date));
+            var orders = dbContext.Orders?.Where(x => x.IsPaid == paid).Select(x => new OrderResponseDTO(x));
             return orders != null ? orders.ToList() : new List<OrderResponseDTO>();
         }
 

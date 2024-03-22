@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,11 +14,12 @@ namespace BLL.DTOModels
         public bool IsPaid { get; }
         public DateTime Date { get; }
 
-        public OrderRequestDTO(int id, int? userId, bool isPaid, DateTime date)
+        public OrderRequestDTO(Order order)
         {
-            Id = id;
-            UserId = userId;
-            Date = date;
+            Id = order.Id;
+            UserId = order.UserId;
+            IsPaid = order.IsPaid;
+            Date = order.Date;
         }
     }
 
@@ -26,11 +28,11 @@ namespace BLL.DTOModels
         public int? UserId { get; }
         public DateTime Date { get; }
         public bool IsPaid { get; }
-        public OrderResponseDTO(int? userId, bool isPaid, DateTime date)
+        public OrderResponseDTO(Order order)
         {
-            UserId = userId;
-            Date = date;
-            IsPaid = isPaid;
+            UserId = order.UserId;
+            IsPaid = order.IsPaid;
+            Date = order.Date;
         }
     }
 }

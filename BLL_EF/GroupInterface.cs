@@ -39,7 +39,7 @@ namespace BLL_EF
                 var list = new List<ProductGroupResponseDTO>();
                 foreach (var g in group.Children)
                 {
-                    list.Add(new ProductGroupResponseDTO(g.Id, group.ParentId, g.Name));
+                    list.Add(new ProductGroupResponseDTO(g));
                 }
                 return new ProductGroupParentChildrenDTO(group.ParentId.Value, children: list);
             }
@@ -63,7 +63,7 @@ namespace BLL_EF
                 var res = new List<ProductGroupResponseDTO>();
                 foreach (var parent in parents)
                 {
-                    res.Add(new ProductGroupResponseDTO(parent.Id, null, parent.Name));
+                    res.Add(new ProductGroupResponseDTO(parent));
                 }
                 return res;
             }
@@ -76,6 +76,16 @@ namespace BLL_EF
             if (parents != null && parents?.Count() > 0)
                 return descending ? parents.OrderByDescending(x => x.Name).ToList() : parents.OrderBy(x => x.Name).ToList();
             return new List<ProductGroupResponseDTO>();
+        }
+
+        public ProductGroupResponseDTO GetProductGroupById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<ProductGroupResponseDTO> GetProductGroups()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -20,16 +20,8 @@ namespace BLL_EF
         {
             this.dbContext = dbContext;
         }
-        public void AddNewProduct(string name, double price, int? groupId)
-        {
-            if (price <= 0.0)
-                throw new ArgumentException("Cena musi być większa od 0");
-            var product = new Product() { Name = name, Price = price, GroupId = groupId, IsActive = true };
-            dbContext?.Add(product);
-            dbContext?.SaveChanges();
-        }
 
-        public IEnumerable<ProductResponseDTO> GetProductsByFilters(string name, int? groupId, bool? isActive, bool descending = false)
+        public IEnumerable<ProductResponseDTO> GetProductsByFilters(string? name, int? groupId, bool? isActive, bool descending = false)
         {
             var query = ReturnQueryAfterFiltering(name, groupId, isActive);
             if (query != null)
@@ -72,15 +64,15 @@ namespace BLL_EF
                     if (product.BasketPositions != null && product.BasketPositions?.Count() > 0)
                     {
                         foreach (var position in product.BasketPositions)
-                            basketPositions.Add(new BasketPositionResponseDTO(position.ProductId, position.UserId, position.Amount));
+                            basketPositions.Add(new BasketPositionResponseDTO(position));
                     }
-                    res.Add(new ProductResponseDTO(GetProductNameWithParents(product.Name, product.GroupId), product.Price, product.Image, product.IsActive, product.GroupId, basketPositions));
+                    res.Add(new ProductResponseDTO(product, GetProductNameWithParents(product.Name, product.GroupId)));
                 }
             }
             return res;
         }
 
-        private IQueryable<Product>? ReturnQueryAfterFiltering(string name, int? groupId, bool? isActive)
+        private IQueryable<Product>? ReturnQueryAfterFiltering(string? name, int? groupId, bool? isActive)
         {
             var query = dbContext.Products?.AsQueryable();
             if (query != null)
@@ -136,6 +128,66 @@ namespace BLL_EF
             var isNotInOrder = !dbContext.Orders?.Any(x => x.Positions != null && x.Positions.Any(y => y.Id == productId) && !x.IsPaid) ?? true;
             var isNotInBasket = !dbContext.BasketPositions?.Any(x => x.ProductId == productId) ?? true;
             return isNotInBasket && isNotInOrder;
+        }
+
+        public List<ProductResponseDTO> GetProducts()
+        {
+            throw new NotImplementedException();
+        }
+
+        int IProductInterface.AddNewProduct(string name, string image, double price, int? groupId)
+        {
+            if (price <= 0.0)
+                throw new ArgumentException("Cena musi być większa od 0");
+            var product = new Product() { Name = name, Price = price, GroupId = groupId, IsActive = true, Image = image };
+            dbContext?.Add(product);
+            dbContext?.SaveChanges();
+            return product.Id;
+        }
+        public ProductResponseDTO GetProductById(int productId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool ActivateProduct(int productId)
+        {
+            var product = dbContext.Products?.FirstOrDefault(x => x.Id == productId);
+            if (product != null)
+            {
+                if (!product.IsActive)
+                {
+                    product.IsActive = true;
+                    dbContext.Update(product);
+                    dbContext.SaveChanges();
+                }
+                return true;
+            }
+            return false;
+        }
+
+        public bool AddProductToBasket(int productId, int basketId)
+        {
+            var product = dbContext.Products?.FirstOrDefault(x => x.Id == productId);
+            var basket = dbContext.BasketPositions?.FirstOrDefault(x => x.Id == basketId);
+            if (product != null && basket != null)
+            {
+                if (product.BasketPositions != null)
+                    product.BasketPositions.Append(basket);
+                else
+                {
+                    product.BasketPositions = new List<BasketPosition>();
+                    product.BasketPositions.Append(basket);
+                }
+
+                basket.Product = product;
+                basket.ProductId = productId;
+
+                dbContext.Update(basket);
+                dbContext.Update(product);
+                dbContext.SaveChanges();
+                return true;
+            }
+            return false;
         }
     }
 }

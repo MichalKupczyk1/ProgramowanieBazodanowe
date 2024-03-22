@@ -10,16 +10,16 @@ namespace BLL.DTOModels
     public class UserResponseDTO
     {
         public string Login { get; }
-        public string Type { get; }
+        public int Type { get; }
         public UserGroupResponseDTO? Group { get; }
         public bool IsActive { get; }
 
-        public UserResponseDTO(string login, string type, bool isActive, UserGroupResponseDTO group = null)
+        public UserResponseDTO(User user)
         {
-            this.Login = login;
-            this.Type = type;
-            this.Group = group;
-            this.IsActive = isActive;
+            Login = user.Login;
+            Type = (int)user.Type;
+            IsActive = user.IsActive;
+            Group = user.UserGroup != null ? new UserGroupResponseDTO(user.UserGroup) : null;
         }
 
     }
@@ -32,14 +32,15 @@ namespace BLL.DTOModels
         public UserType Type { get; }
         public int? GroupId { get; }
         public bool IsActive { get; }
-        public UserReqestDTO(int id, string login, string password, bool isActive, UserType type, int? groupId)
+
+        public UserReqestDTO(User user)
         {
-            Id = id;
-            Login = login;
-            Password = password;
-            Type = type;
-            GroupId = groupId;
-            IsActive = isActive;
+            Id = user.Id;
+            Login = user.Login;
+            Password = user.Password;
+            Type = user.Type;
+            GroupId = user.GroupId;
+            IsActive = user.IsActive;
         }
     }
 }

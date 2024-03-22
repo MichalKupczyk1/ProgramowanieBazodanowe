@@ -1,3 +1,7 @@
+using BLL.ServiceInterfaces;
+using BLL_EF;
+using DAL;
+
 namespace Zad2PB
 {
     public class Program
@@ -12,6 +16,10 @@ namespace Zad2PB
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddDbContext<WebshopContext>();
+            builder.Services.AddScoped<IProductInterface, ProductInterface>();
+            builder.Services.AddScoped<IOrderInterface, OrderInterface>();
+            builder.Services.AddScoped<IBasketInterface, BasketInterface>();
 
             var app = builder.Build();
 

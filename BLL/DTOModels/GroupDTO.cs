@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,11 +12,11 @@ namespace BLL.DTOModels
         public int Id { get; }
         public string Name { get; }
         public IEnumerable<int>? UserIds { get; }
-        public UserGroupRequestDTO(int id, string name, IEnumerable<int>? userIds)
+        public UserGroupRequestDTO(UserGroup userGroup)
         {
-            Id = id;
-            Name = name;
-            UserIds = userIds;
+            Id = userGroup.Id;
+            Name = userGroup.Name;
+            UserIds = userGroup.Users?.Select(user => user.Id);
         }
     }
 
@@ -23,10 +24,10 @@ namespace BLL.DTOModels
     {
         public string Name { get; }
         public IEnumerable<int>? UserIds { get; }
-        public UserGroupResponseDTO(string name, IEnumerable<int>? userIds)
+        public UserGroupResponseDTO(UserGroup userGroup)
         {
-            Name = name;
-            UserIds = userIds;
+            Name = userGroup.Name;
+            UserIds = userGroup.Users?.Select(user => user.Id);
         }
     }
 
@@ -36,12 +37,11 @@ namespace BLL.DTOModels
         public int? ParentId { get; }
         public string Name { get; }
         public IEnumerable<int>? ChildrenIds { get; }
-        public ProductGroupRequestDTO(int id, int? parentId, string name, IEnumerable<int>? childrenIds)
+        public ProductGroupRequestDTO(ProductGroup productGroup)
         {
-            Id = id;
-            ParentId = parentId;
-            Name = name;
-            ChildrenIds = childrenIds;
+            Id = productGroup.Id;
+            ParentId = productGroup.ParentId;
+            Name = productGroup.Name;
         }
     }
 
@@ -50,11 +50,11 @@ namespace BLL.DTOModels
         public int GroupId { get; }
         public int? ParentId { get; }
         public string Name { get; }
-        public ProductGroupResponseDTO(int groupId, int? parentId, string name)
+        public ProductGroupResponseDTO(ProductGroup productGroup)
         {
-            GroupId = groupId;
-            ParentId = parentId;
-            Name = name;
+            GroupId = productGroup.Id;
+            ParentId = productGroup.ParentId;
+            Name = productGroup.Name;
         }
     }
 

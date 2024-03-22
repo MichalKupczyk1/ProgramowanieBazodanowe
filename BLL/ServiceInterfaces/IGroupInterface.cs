@@ -15,6 +15,8 @@ namespace BLL.ServiceInterfaces
         public ProductGroupParentChildrenDTO GetChildrenByGroupId(int groupId);
         public IEnumerable<ProductGroupResponseDTO> GetChildrenByGroupIdSortByName(int groupId, bool descending = false);
         public bool AddNewProductGroup(ProductGroupRequestDTO productGroup);
+        public List<ProductGroupResponseDTO> GetProductGroups();
+        public ProductGroupResponseDTO GetProductGroupById(int id);
     }
     public interface IUserGroupInterface
     {

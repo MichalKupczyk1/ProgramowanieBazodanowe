@@ -11,5 +11,7 @@ namespace BLL.ServiceInterfaces
     {
         public bool UserLogIn(string username, string password);
         public bool UserLogOut(int UserId);
+        public List<UserGroupResponseDTO> GetUsers();
+        public UserResponseDTO GetUser(int id);
     }
 }
