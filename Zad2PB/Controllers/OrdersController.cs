@@ -29,7 +29,7 @@ namespace Zad2PB.Controllers
         }
 
         [HttpPost("PayForOrder")]
-        public void GenerateOrder(int orderId, double price)
+        public void PayForOrder(int orderId, double price)
         {
             _orderInterface.PayForOrder(orderId, price);
         }
