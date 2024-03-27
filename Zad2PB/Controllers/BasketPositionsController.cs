@@ -34,7 +34,7 @@ namespace Zad2PB.Controllers
             return _basketInterface.RemoveProductFromBasket(basketId);
         }
 
-        [HttpPost("AddProductToBasket")]
+        [HttpPost("ChangeTheAmountOfProductsInBasket")]
         public void ChangeTheAmountOfProductsInBasket(int productId, int basketId, int amount)
         {
             _basketInterface.ChangeTheAmountOfProductsInBasket(basketId, amount);

@@ -20,7 +20,7 @@ namespace DAL
         public DbSet<UserGroup>? UserGroups { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SQLDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+            optionsBuilder.UseSqlServer(DbConnection.ConnectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -47,5 +47,10 @@ namespace DAL
 
             base.OnModelCreating(modelBuilder);
         }
+    }
+
+    public static class DbConnection
+    {
+        public static string ConnectionString => @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=sqldb;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
     }
 }

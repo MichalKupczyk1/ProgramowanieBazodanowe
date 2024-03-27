@@ -25,6 +25,16 @@ namespace BLL.DTOModels
             BasketPositions = product.BasketPositions != null ? ConvertBasketPositions(product.BasketPositions) : null;
         }
 
+        public ProductResponseDTO(Product product)
+        {
+            Name = product.Name;
+            Price = product.Price;
+            Image = product.Image;
+            IsActive = product.IsActive;
+            GroupId = product.GroupId;
+            BasketPositions = product.BasketPositions != null ? ConvertBasketPositions(product.BasketPositions) : null;
+        }
+
         private IEnumerable<BasketPositionResponseDTO> ConvertBasketPositions(IEnumerable<BasketPosition> basketPositions)
         {
             List<BasketPositionResponseDTO> result = new List<BasketPositionResponseDTO>();

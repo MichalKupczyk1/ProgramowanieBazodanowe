@@ -1,18 +1,21 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Student RM4-3073 15\\Desktop\\git\\ProgramowanieBazodanowe\\Zad2PB\\",
+  "WorkspaceRootPath": "C:\\Users\\Student RM4-3073 16\\Documents\\GitHub\\ProgramowanieBazodanowe\\Zad2PB\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4C53C062-51CD-48F2-A867-DFEE7516EC95}|..\\Model\\Model.csproj|c:\\users\\student rm4-3073 15\\desktop\\git\\programowaniebazodanowe\\model\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{51442300-B3D3-40A4-9C8E-C62383D865F3}|Zad2PB.csproj|c:\\users\\student rm4-3073 16\\documents\\github\\programowaniebazodanowe\\zad2pb\\controllers\\basketpositionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51442300-B3D3-40A4-9C8E-C62383D865F3}|Zad2PB.csproj|solutionrelative:controllers\\basketpositionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9BF361A3-F9A3-4044-80A0-A6B005865AC6}|..\\BLL\\BLL.csproj|c:\\users\\student rm4-3073 15\\desktop\\git\\programowaniebazodanowe\\bll\\serviceinterfaces\\iuserinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{51442300-B3D3-40A4-9C8E-C62383D865F3}|Zad2PB.csproj|c:\\users\\student rm4-3073 16\\documents\\github\\programowaniebazodanowe\\zad2pb\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51442300-B3D3-40A4-9C8E-C62383D865F3}|Zad2PB.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9BF361A3-F9A3-4044-80A0-A6B005865AC6}|..\\BLL\\BLL.csproj|c:\\users\\student rm4-3073 15\\desktop\\git\\programowaniebazodanowe\\bll\\dtomodels\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9FBF9FF3-EFFB-471F-88C7-51D26FB7BEE2}|..\\BLL_DB\\BLL_DB.csproj|c:\\users\\student rm4-3073 16\\documents\\github\\programowaniebazodanowe\\bll_db\\basketinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9BF361A3-F9A3-4044-80A0-A6B005865AC6}|..\\BLL\\BLL.csproj|c:\\users\\student rm4-3073 15\\desktop\\git\\programowaniebazodanowe\\bll\\serviceinterfaces\\iproductinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{51442300-B3D3-40A4-9C8E-C62383D865F3}|Zad2PB.csproj|c:\\users\\student rm4-3073 16\\documents\\github\\programowaniebazodanowe\\zad2pb\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51442300-B3D3-40A4-9C8E-C62383D865F3}|Zad2PB.csproj|solutionrelative:controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,60 +29,54 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UserDTO.cs",
-              "DocumentMoniker": "C:\\Users\\Student RM4-3073 15\\Desktop\\git\\ProgramowanieBazodanowe\\BLL\\DTOModels\\UserDTO.cs",
-              "RelativeDocumentMoniker": "..\\BLL\\DTOModels\\UserDTO.cs",
-              "ToolTip": "C:\\Users\\Student RM4-3073 15\\Desktop\\git\\ProgramowanieBazodanowe\\BLL\\DTOModels\\UserDTO.cs",
-              "RelativeToolTip": "..\\BLL\\DTOModels\\UserDTO.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-13T15:23:49.628Z",
-              "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\Student RM4-3073 15\\Desktop\\git\\ProgramowanieBazodanowe\\Model\\User.cs",
-              "RelativeDocumentMoniker": "..\\Model\\User.cs",
-              "ToolTip": "C:\\Users\\Student RM4-3073 15\\Desktop\\git\\ProgramowanieBazodanowe\\Model\\User.cs",
-              "RelativeToolTip": "..\\Model\\User.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "Title": "BasketPositionsController.cs",
+              "DocumentMoniker": "C:\\Users\\Student RM4-3073 16\\Documents\\GitHub\\ProgramowanieBazodanowe\\Zad2PB\\Controllers\\BasketPositionsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\BasketPositionsController.cs",
+              "ToolTip": "C:\\Users\\Student RM4-3073 16\\Documents\\GitHub\\ProgramowanieBazodanowe\\Zad2PB\\Controllers\\BasketPositionsController.cs",
+              "RelativeToolTip": "Controllers\\BasketPositionsController.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAACQAAAA0AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-13T15:24:29.378Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IProductInterface.cs",
-              "DocumentMoniker": "C:\\Users\\Student RM4-3073 15\\Desktop\\git\\ProgramowanieBazodanowe\\BLL\\ServiceInterfaces\\IProductInterface.cs",
-              "RelativeDocumentMoniker": "..\\BLL\\ServiceInterfaces\\IProductInterface.cs",
-              "ToolTip": "C:\\Users\\Student RM4-3073 15\\Desktop\\git\\ProgramowanieBazodanowe\\BLL\\ServiceInterfaces\\IProductInterface.cs",
-              "RelativeToolTip": "..\\BLL\\ServiceInterfaces\\IProductInterface.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAoAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-13T15:23:09.008Z",
+              "WhenOpened": "2024-03-27T16:21:06.838Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "IUserInterface.cs",
-              "DocumentMoniker": "C:\\Users\\Student RM4-3073 15\\Desktop\\git\\ProgramowanieBazodanowe\\BLL\\ServiceInterfaces\\IUserInterface.cs",
-              "RelativeDocumentMoniker": "..\\BLL\\ServiceInterfaces\\IUserInterface.cs",
-              "ToolTip": "C:\\Users\\Student RM4-3073 15\\Desktop\\git\\ProgramowanieBazodanowe\\BLL\\ServiceInterfaces\\IUserInterface.cs",
-              "RelativeToolTip": "..\\BLL\\ServiceInterfaces\\IUserInterface.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Student RM4-3073 16\\Documents\\GitHub\\ProgramowanieBazodanowe\\Zad2PB\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\Student RM4-3073 16\\Documents\\GitHub\\ProgramowanieBazodanowe\\Zad2PB\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-13T15:22:48.628Z",
+              "WhenOpened": "2024-03-27T16:16:48.449Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProductsController.cs",
+              "DocumentMoniker": "C:\\Users\\Student RM4-3073 16\\Documents\\GitHub\\ProgramowanieBazodanowe\\Zad2PB\\Controllers\\ProductsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ProductsController.cs",
+              "ToolTip": "C:\\Users\\Student RM4-3073 16\\Documents\\GitHub\\ProgramowanieBazodanowe\\Zad2PB\\Controllers\\ProductsController.cs",
+              "RelativeToolTip": "Controllers\\ProductsController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-27T16:16:38.326Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BasketInterface.cs",
+              "DocumentMoniker": "C:\\Users\\Student RM4-3073 16\\Documents\\GitHub\\ProgramowanieBazodanowe\\BLL_DB\\BasketInterface.cs",
+              "RelativeDocumentMoniker": "..\\BLL_DB\\BasketInterface.cs",
+              "ToolTip": "C:\\Users\\Student RM4-3073 16\\Documents\\GitHub\\ProgramowanieBazodanowe\\BLL_DB\\BasketInterface.cs",
+              "RelativeToolTip": "..\\BLL_DB\\BasketInterface.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-27T16:15:46.177Z",
               "EditorCaption": ""
             }
           ]
