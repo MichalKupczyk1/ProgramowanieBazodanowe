@@ -9,14 +9,25 @@ namespace BLL.DTOModels
 {
     public class ProductResponseDTO
     {
-        public string Name { get; }
-        public double Price { get; }
-        public string Image { get; }
-        public bool IsActive { get; }
-        public int? GroupId { get; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public double Price { get; init; }
+        public string Image { get; init; }
+        public bool IsActive { get; init; }
+        public int? GroupId { get; init; }
         public IEnumerable<BasketPositionResponseDTO>? BasketPositions { get; }
+        public ProductResponseDTO(int id, string name, double price, string image, bool isActive, int? groupId)
+        {
+            this.Id = id;
+            this.Name = name;
+            this.Price = price;
+            this.Image = image;
+            this.IsActive = isActive;
+            this.GroupId = groupId;
+        }
         public ProductResponseDTO(Product product, string name = "")
         {
+            Id = product.Id;
             Name = name != "" ? name : product.Name;
             Price = product.Price;
             Image = product.Image;

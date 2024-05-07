@@ -112,12 +112,17 @@ namespace DAL.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
 
                     b.HasIndex("UserId");
 
@@ -283,11 +288,17 @@ namespace DAL.Migrations
                         .WithMany("Positions")
                         .HasForeignKey("OrderId");
 
+                    b.HasOne("Model.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId");
+
                     b.HasOne("Model.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
 
                     b.Navigation("Order");
+
+                    b.Navigation("Product");
 
                     b.Navigation("User");
                 });

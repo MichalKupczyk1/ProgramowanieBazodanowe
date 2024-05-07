@@ -3,16 +3,13 @@ using BLL.ServiceInterfaces;
 using DAL;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using Model;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
+using static System.Net.Mime.MediaTypeNames;
+using System.Diagnostics;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Xml.Linq;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using System.Data;
+using System.Reflection.PortableExecutable;
+using Model;
 
 namespace BLL_DB
 {
@@ -57,7 +54,10 @@ namespace BLL_DB
 
         public bool AddProductToBasket(int productId, int basketId)
         {
-            throw new NotImplementedException();
+            var productIdParam = new SqlParameter("@ProductId", productId);
+            var basketIdParam = new SqlParameter("@BasketId", basketId);
+            _context.Database.ExecuteSqlRaw("EXEC AddProductToBasket @ProductId @BasketId", productIdParam, basketIdParam);
+            return true;
         }
 
         public bool DeactivateProduct(int productId)
@@ -82,80 +82,63 @@ namespace BLL_DB
 
         public IEnumerable<ProductResponseDTO> GetProductsByFilters(string name, int? groupId, bool? isActive, bool descending = false)
         {
+            List<ProductResponseDTO> products = new List<ProductResponseDTO>();
+
             var connectionString = DbConnection.ConnectionString;
 
-            var sql = "DECLARE @Hierarchy NVARCHAR(MAX); " +
-                      "DECLARE @ProductId INT; " +
-                      "SELECT @ProductId = p.Id " +
-                      "FROM Products p " +
-                      "WHERE 1=1 ";
-
-            if (!string.IsNullOrWhiteSpace(name))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                sql += "AND p.Name LIKE CONCAT('%', @Name, '%'); ";
-            }
+                connection.Open();
 
-            if (groupId.HasValue)
-            {
-                sql += "AND p.GroupId = @GroupId; ";
-            }
+                var sqlQuery = "SELECT p.Id, p.Name, p.Price, p.Image, p.IsActive, p.GroupId, g.Name AS GroupName " +
+                                  "FROM Products p LEFT JOIN ProductGroups g ON p.GroupId = g.Id " +
+                                  "WHERE 1=1";
 
-            sql += "EXEC dbo.GetGroupHierarchyProcedure @ProductId = @ProductId; " +
-                   "SELECT p.Id, p.Name, p.Price, @Hierarchy AS GroupName " +
-                   "FROM Products p " +
-                   "WHERE 1=1 ";
+                if (!string.IsNullOrWhiteSpace(name))
+                    sqlQuery += " AND (p.Name LIKE '%' + @name + '%' OR g.Name LIKE '%' + @name + '%')";
+                if (groupId.HasValue)
+                    sqlQuery += " AND p.GroupId = @groupId";
+                if (isActive.HasValue)
+                    sqlQuery += " AND p.IsActive = @isActive";
 
-            if (!string.IsNullOrWhiteSpace(name))
-            {
-                sql += "AND p.Name LIKE CONCAT('%', @Name, '%') ";
-            }
+                if (descending)
+                    sqlQuery += " ORDER BY p.Name DESC";
+                else
+                    sqlQuery += " ORDER BY p.Name ASC";
 
-            if (groupId.HasValue)
-            {
-                sql += "AND p.GroupId = @GroupId ";
-            }
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
 
-            if (isActive.HasValue)
-            {
-                sql += "AND p.IsActive = @IsActive ";
-            }
+                command.Parameters.AddWithValue("@name", name ?? "");
+                command.Parameters.AddWithValue("@groupId", groupId ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@isActive", isActive ?? (object)DBNull.Value);
 
-            sql += descending ? "ORDER BY p.Name DESC;" : "ORDER BY p.Name;";
-
-            var products = new List<ProductResponseDTO>();
-
-            using (var connection = new SqlConnection(connectionString))
-            {
-                using (var command = new SqlCommand(sql, connection))
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    if (!string.IsNullOrWhiteSpace(name))
+                    while (reader.Read())
                     {
-                        command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = name;
+                        var id = reader.GetInt32(reader.GetOrdinal("Id"));
+                        var productName = reader.GetString(reader.GetOrdinal("Name"));
+                        var price = reader.GetDouble(reader.GetOrdinal("Price"));
+                        var image = reader.GetString(reader.GetOrdinal("Image"));
+                        var productIsActive = reader.GetBoolean(reader.GetOrdinal("IsActive"));
+                        var productGroupId = reader.IsDBNull(reader.GetOrdinal("GroupId")) ? null : (int?)reader.GetInt32(reader.GetOrdinal("GroupId"));
+
+                        products.Add(new ProductResponseDTO(id, productName, price, image, productIsActive, productGroupId));
                     }
+                }
 
-                    if (groupId.HasValue)
+                foreach (var product in products)
+                {
+                    command = new SqlCommand("GetProductsHierarchyAsString", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@ProductId", product.Id);
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        command.Parameters.Add("@GroupId", SqlDbType.Int).Value = groupId.Value;
-                    }
-
-                    if (isActive.HasValue)
-                    {
-                        command.Parameters.Add("@IsActive", SqlDbType.Bit).Value = isActive.Value;
-                    }
-
-                    connection.Open();
-
-                    using (var reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
+                        if (reader.Read())
                         {
-                            var productId = reader.GetInt32(0);
-                            var productName = reader.GetString(1);
-                            var productPrice = reader.GetDouble(2);
-                            var productGroupName = reader.GetString(3);
-
-                            var product = new ProductResponseDTO(new Product { Id = productId, Name = productName, Price = (double)productPrice }, productGroupName);
-                            products.Add(product);
+                            var hierarchia = reader.GetString(0);
+                            if (hierarchia != null)
+                                product.Name = hierarchia;
                         }
                     }
                 }
@@ -163,9 +146,6 @@ namespace BLL_DB
 
             return products;
         }
-
-
-
 
         public bool RemoveProduct(int productId)
         {

@@ -25,5 +25,9 @@ namespace Model
         public int Amount { get; set; }
         [Range(0, double.MaxValue)]
         public double Price { get; set; }
+        [ForeignKey(nameof(Product))]
+        public int? ProductId { get; set; }
+        public Product? Product { get; set; }
+
     }
 }

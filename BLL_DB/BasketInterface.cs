@@ -46,18 +46,12 @@ namespace BLL_DB
 
         public void ChangeTheAmountOfProductsInBasket(int basketId, int amount)
         {
-            var sql = @"
-            UPDATE BasketPositions
-            SET Amount = @Amount
-            WHERE Id = @Id";
+            var sql = @"EXEC ChangeAmountOfProductsInBasket @BasketPositionId, @Amount";
 
-            var parameters = new[]
-            {
-            new SqlParameter("@Id", basketId),
-            new SqlParameter("@Amount", amount)
-        };
+            var basketPositionIdParameter = new SqlParameter("@BasketPositionId", basketId);
+            var amountParameter = new SqlParameter("@Amount", amount);
 
-            _context.Database.ExecuteSqlRaw(sql, parameters);
+            _context.Database.ExecuteSqlRaw(sql, basketPositionIdParameter, amountParameter);
         }
 
         public bool RemoveProductFromBasket(int basketId)

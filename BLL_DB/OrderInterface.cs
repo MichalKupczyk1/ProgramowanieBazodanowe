@@ -28,30 +28,6 @@ namespace BLL_DB
             _context.Database.ExecuteSqlRaw("EXEC CreateOrderForUser @UserId", userIdParam);
         }
 
-        /*
-         CREATE PROCEDURE CreateOrderForUser
-            @UserId INT
-            AS
-            BEGIN
-                -- Tworzenie nowego zamówienia dla użytkownika
-                DECLARE @OrderId INT;
-                INSERT INTO Orders (UserId, Date, IsPaid)
-                VALUES (@UserId, GETDATE(), 0);
-
-                -- Pobieranie identyfikatora nowo utworzonego zamówienia
-                SELECT @OrderId = SCOPE_IDENTITY();
-
-                -- Dodawanie pozycji zamówienia dla produktów z koszyka użytkownika
-                INSERT INTO OrderPositions (OrderId, ProductId)
-                SELECT @OrderId, ProductId
-                FROM BasketPositions
-                WHERE UserId = @UserId;
-
-                -- Czyszczenie koszyka użytkownika (opcjonalnie)
-                DELETE FROM BasketPositions WHERE UserId = @UserId;
-            END
-*/
-
         public OrderResponseDTO GetById(int id)
         {
             throw new NotImplementedException();
@@ -83,19 +59,5 @@ namespace BLL_DB
             var amountPaidParam = new SqlParameter("@AmountPaid", (decimal)amountPaid);
             _context.Database.ExecuteSqlRaw("EXEC PayForOrder @OrderId, @AmountPaid", orderIdParam, amountPaidParam);
         }
-        /*
-         * CREATE PROCEDURE PayForOrder
-                @OrderId INT,
-                @AmountPaid DECIMAL(18, 2)
-            AS
-            BEGIN
-                -- Aktualizacja informacji o zamówieniu
-                UPDATE Orders
-                SET AmountPaid = @AmountPaid,
-                    IsPaid = CASE WHEN @AmountPaid >= TotalAmount THEN 1 ELSE 0 END
-                WHERE Id = @OrderId;
-            END
-
-         */
     }
 }
